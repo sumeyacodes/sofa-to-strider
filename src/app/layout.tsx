@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Sofa to Strider",
-  description: "An app to help you get started ",
+  description: "An app to help you get started going outside",
 };
 
 export default function RootLayout({
