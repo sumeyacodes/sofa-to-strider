@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Weather } from "@/components/weather";
+import WeatherApp from "@/components/weather";
 import { Locations } from "@/components/locations";
 import { Example } from "@/components/example";
 
@@ -19,7 +19,7 @@ export default function Home() {
       <Example />
 
       {/* can rename/restructure these components */}
-      <Weather />
+      <WeatherApp />
       <Locations />
     </main>
   );
