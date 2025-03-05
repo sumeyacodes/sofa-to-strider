@@ -6,6 +6,8 @@ import { LoadScript } from "@react-google-maps/api";
 //import { GoogleMap, Marker } from "@react-google-maps/api";
 import PlacePhotoDisplay from "./PlacePhotoDisplay";
 //import { MapPin } from "lucide-react";
+import WhereSubheading from "@/components/ui/where-subheading";
+
 import { useLocationContext } from "@/context/location-provider";
 
 export function Locations() {
@@ -29,23 +31,33 @@ export function Locations() {
 
   // function displayPlace(aPlace: Place) {
   //   const myName = aPlace.name;
-  //   console.log('ref for photo is ' + aPlace.photos[0].photo_reference);
+  // </section>  console.log('ref for photo is ' + aPlace.photos[0].photo_reference);
   //   alert(myName);
   // }
 
   return (
-    <section className="flex flex-col items-center justify-center w-full h-full border">
-      <h1>Where?</h1>
-      <h2>Top three spots for a lovely walk</h2>
+    <section className="flex flex-col items-center justify-center w-full">
       <LoadScript googleMapsApiKey={googleMapsApiKey}>
-        <PlacePhotoDisplay place={places[0]} />
-        <PlacePhotoDisplay place={places[1]} />
-        <PlacePhotoDisplay place={places[2]} />
-        {/* <GoogleMap mapContainerStyle={{ width: "100%", height: "500px" }} zoom={13} center={location}>
-          {places.map((place, index) => (
-            <Marker key={index} onClick={()=>displayPlace(place)} position={{ lat: place.geometry.location.lat, lng: place.geometry.location.lng }} />
+        <WhereSubheading />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 max-w-4xl">
+          {[0, 1, 2].map((index) => (
+            <div
+              key={index}
+              className="relative overflow-hidden rounded-lg border-4 border-[#4A7C59] shadow-lg"
+            >
+              <div className="top-0 left-0 right-0 h-40 bg-[#4A7C59] flex items-center px-4">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#FAF3DD]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#C8D5B9]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#8FC0A9]"></div>
+                </div>
+              </div>
+              <div className="pt-8">
+                <PlacePhotoDisplay place={places[index]} />
+              </div>
+            </div>
           ))}
-        </GoogleMap> */}
+        </div>
       </LoadScript>
     </section>
   );
