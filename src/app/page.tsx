@@ -1,7 +1,6 @@
 import Image from "next/image";
 import WeatherApp from "@/components/weather";
 import { Locations } from "@/components/locations";
-import { Example } from "@/components/example";
 
 export default function Home() {
   return (
@@ -16,7 +15,7 @@ export default function Home() {
       <h1 className="text-5xl font-bold text-center">Sofa to Strider</h1>
 
       {/* shadcn example component */}
-      <Example />
+    
 
       {/* can rename/restructure these components */}
       <WeatherApp />
