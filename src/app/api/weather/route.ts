@@ -98,7 +98,8 @@ function processHourlyWeather(data: OpenWeatherResponse): WeatherWindow[] {
     startTime: new Date((hour.dt + data.timezone_offset) * 1000),
     endTime: new Date((hour.dt + data.timezone_offset + 3600) * 1000),
     isDry: hour.pop < 0.2 && !hour.weather.some(w => w.id >= 500 && w.id < 600),
-    condition: mapWeatherCondition(hour.weather[0].id)
+    condition: mapWeatherCondition(hour.weather[0].id),
+    temperature: hour.temp // Add temperature from API response
   }))
 }
 

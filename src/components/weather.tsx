@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { format, addHours } from "date-fns"
+import { format, addHours, addDays } from "date-fns"
 import {
   Carousel,
   CarouselContent,
@@ -52,28 +52,39 @@ export default function WeatherApp() {
   }, [])
 
   const processDryWindows = (hourly: WeatherWindow[]): WeatherWindow[] => {
-    const windows: WeatherWindow[] = []
-    const endDate = addHours(new Date(), 120) // 5 days = 120 hours
-
-    for (let i = 0; i < hourly.length - 1; i++) {
-      if (hourly[i].isDry && hourly[i + 1].isDry) {
-        const window: WeatherWindow = {
-          date: hourly[i].date,
-          startTime: hourly[i].date,
-          endTime: addHours(hourly[i].date, 1.5), // 90 minutes
-          isDry: true,
-          condition: hourly[i].condition
-        }
+    const dailyWindows = new Map<string, WeatherWindow>()
+    const endDate = addDays(new Date(), 5)
+  
+    for (const hour of hourly) {
+      const date = new Date(hour.date)
+      if (date > endDate) break
+  
+      const hours = date.getHours()
+      const dayKey = format(date, 'yyyy-MM-dd')
+      
+      // Only consider 8am-6pm windows
+      if (hours >= 8 && hours < 18 && hour.isDry) {
+        const currentBest = dailyWindows.get(dayKey)
         
-        if (window.endTime <= endDate) {
-          windows.push(window)
-          if (windows.length >= 5) break
+        // Keep track of the warmest window for each day
+        if (!currentBest || hour.temperature > currentBest.temperature) {
+          dailyWindows.set(dayKey, {
+            date: date,
+            startTime: date,
+            endTime: addHours(date, 1),
+            isDry: true,
+            condition: hour.condition,
+            temperature: hour.temperature
+          })
         }
       }
     }
-    return windows
+  
+    // Convert map to sorted array and limit to 5 days
+    return Array.from(dailyWindows.values())
+      .sort((a, b) => a.date.getTime() - b.date.getTime())
+      .slice(0, 5)
   }
-
   const WeatherIcon = ({ condition }: { condition: string }) => {
     const iconProps = { size: 48, className: "mb-4" }
     switch (condition) {
@@ -90,7 +101,7 @@ export default function WeatherApp() {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <Carousel opts={{ align: "start", slidesToScroll: 3 }} className="w-full">
+      <Carousel opts={{ align: "start", slidesToScroll: 1 }} className="w-full">
         <CarouselContent>
           {dryWindows.map((window, index) => (
             <CarouselItem key={index} className="basis-1/3">
