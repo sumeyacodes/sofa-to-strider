@@ -1,6 +1,6 @@
 import Image from "next/image";
 import WeatherApp from "@/components/weather";
-import { Locations } from "@/components/Locations";
+import { Locations } from "@/components/locations";
 import { Example } from "@/components/example";
 
 export default function Home() {
