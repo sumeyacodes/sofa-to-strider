@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel"
 import { Card } from "@/components/ui/card"
 import {  Sun, Cloud, CloudRain, CloudSnow } from "lucide-react" // deleted Umbrella
-import type { WeatherWindow } from "@/lib/types" // deleted WeatherData
+import type { WeatherWindow } from "@/lib/types" // deleted WeatherData, ProcessedHour
 
 export default function WeatherApp() {
   // const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
@@ -51,40 +51,67 @@ export default function WeatherApp() {
     fetchWeather()
   }, [])
 
-  const processDryWindows = (hourly: WeatherWindow[]): WeatherWindow[] => {
-    const dailyWindows = new Map<string, WeatherWindow>()
-    const endDate = addDays(new Date(), 5)
-  
-    for (const hour of hourly) {
-      const date = new Date(hour.date)
-      if (date > endDate) break
-  
-      const hours = date.getHours()
-      const dayKey = format(date, 'yyyy-MM-dd')
-      
-      // Only consider 8am-6pm windows
-      if (hours >= 8 && hours < 18 && hour.isDry) {
-        const currentBest = dailyWindows.get(dayKey)
-        
-        // Keep track of the warmest window for each day
-        if (!currentBest || hour.temperature > currentBest.temperature) {
-          dailyWindows.set(dayKey, {
+const processDryWindows = (hourly: WeatherWindow[]): WeatherWindow[] => {
+  // Create 2 maps for Dry and Fallback Windows
+  const dailyDryWindows = new Map<string, WeatherWindow>()
+  const dailyFallbackWindows = new Map<string, WeatherWindow>()
+  const endDate = addDays(new Date(), 5)
+
+  // First pass: Find best dry windows and track all potential fallbacks
+  for (const hour of hourly) {
+    const date = new Date(hour.date)
+    if (date > endDate) break
+
+    const hours = date.getHours()
+    const dayKey = format(date, 'yyyy-MM-dd')
+    
+    // Only consider 8am-6pm windows for both dry and fallback
+    if (hours >= 8 && hours < 18) {
+      // Track best dry window
+      if (hour.isDry) {
+        const currentDryBest = dailyDryWindows.get(dayKey)
+        if (!currentDryBest || hour.temperature > currentDryBest.temperature) {
+          dailyDryWindows.set(dayKey, {
+            ...hour,
             date: date,
             startTime: date,
-            endTime: addHours(date, 1),
-            isDry: true,
-            condition: hour.condition,
-            temperature: hour.temperature
+            endTime: addHours(date, 1)
           })
         }
       }
+
+      // Track best fallback window (regardless of dry status)
+      const currentFallbackBest = dailyFallbackWindows.get(dayKey)
+      if (!currentFallbackBest || hour.temperature > currentFallbackBest.temperature) {
+        dailyFallbackWindows.set(dayKey, {
+          ...hour,
+          date: date,
+          startTime: date,
+          endTime: addHours(date, 1),
+          isDry: false // Mark as not dry for fallback
+        })
+      }
     }
-  
-    // Convert map to sorted array and limit to 5 days
-    return Array.from(dailyWindows.values())
-      .sort((a, b) => a.date.getTime() - b.date.getTime())
-      .slice(0, 5)
   }
+
+  // Generate results for next 5 days
+  const results: WeatherWindow[] = []
+  const today = new Date()
+  
+  for (let i = 0; i < 5; i++) {
+    const currentDay = addDays(today, i)
+    const dayKey = format(currentDay, 'yyyy-MM-dd')
+    
+    const bestWindow = dailyDryWindows.get(dayKey) || dailyFallbackWindows.get(dayKey)
+    
+    if (bestWindow) {
+      results.push(bestWindow)
+    }
+  }
+
+  return results.sort((a, b) => a.date.getTime() - b.date.getTime()).slice(0, 5)
+}
+
   const WeatherIcon = ({ condition }: { condition: string }) => {
     const iconProps = { size: 48, className: "mb-4" }
     switch (condition) {
@@ -116,7 +143,7 @@ export default function WeatherApp() {
                 <div className="flex items-center justify-center gap-2">
                   <Sun size={16} />
                   <span className="text-sm font-medium">
-                    Dry Window
+                  {window.isDry ? 'Perfect for Walking!' : 'Not ideal but best of the rest!'}
                   </span>
                 </div>
               </Card>
