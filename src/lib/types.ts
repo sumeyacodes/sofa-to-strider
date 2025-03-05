@@ -33,3 +33,25 @@ export interface WeatherData {
     isDry: boolean
     condition: string
   }
+
+  export type Photo = {
+    photo_reference: string;
+    height: number;
+    width: number;
+    // Add other photo properties if needed
+  };
+  
+  
+  export type Place = {
+    name: string;
+    place_id: string;
+    photos: Photo[];
+    geometry: {
+      location: {
+        lat: number;
+        lng: number;
+      }
+    };
+    // Add other properties of a place if needed
+  };
+  
