@@ -10,13 +10,13 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel"
 import { Card } from "@/components/ui/card"
-import { Umbrella, Sun, Cloud, CloudRain, CloudSnow } from "lucide-react"
-import type { WeatherData, WeatherWindow } from "@/lib/types"
+import {  Sun, Cloud, CloudRain, CloudSnow } from "lucide-react" // deleted Umbrella
+import type { WeatherWindow } from "@/lib/types" // deleted WeatherData
 
 export default function WeatherApp() {
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
+  // const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
   const [dryWindows, setDryWindows] = useState<WeatherWindow[]>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
+  // const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -39,7 +39,7 @@ export default function WeatherApp() {
           throw new Error('Invalid weather data format')
         }
 
-        setWeatherData(data.current)
+        // setWeatherData(data.current)
         setDryWindows(processDryWindows(data.hourly))
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load weather data')
@@ -120,11 +120,11 @@ export default function WeatherApp() {
 }
 
 // Moved outside the component
-function mapWeatherCondition(weatherId: number): string {
-  if (weatherId >= 200 && weatherId < 300) return 'stormy'
-  if (weatherId >= 300 && weatherId < 600) return 'rainy'
-  if (weatherId >= 600 && weatherId < 700) return 'snowy'
-  if (weatherId === 800) return 'sunny'
-  if (weatherId > 800) return 'cloudy'
-  return 'partly-cloudy'
-}
+// function mapWeatherCondition(weatherId: number): string {
+//   if (weatherId >= 200 && weatherId < 300) return 'stormy'
+//   if (weatherId >= 300 && weatherId < 600) return 'rainy'
+//   if (weatherId >= 600 && weatherId < 700) return 'snowy'
+//   if (weatherId === 800) return 'sunny'
+//   if (weatherId > 800) return 'cloudy'
+//   return 'partly-cloudy'
+// }
