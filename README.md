@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align = "center">Sofa to Strider</h1>
 
-## Getting Started
+<p align = "center"><b>Overview</b>: <i>"After the past 13 weeks, as we’ve been sat inside, spring has now sprung and we wanted to make sure that we get outside as much as possible. Our app breaks down the barrier and ultimate excuses of not knowing when and where to go." </i></p>
 
-First, run the development server:
+  <img align = "center" src="/readme-images/sofa-to-strider-logo-and-title.PNG" alt="StS logo and title">
+
+------------
+
+## Deployment location
+
+For ease of use, please visit our app on: https://sofa-to-strider.vercel.app/
+
+<h4><u>Advisory:</u></h4> In order to get the optimal functionality of this app, please ensure your device's 'Location' option is enabled, then you should see the following prompt upon launch:
+
+  <img align = "center" src="/readme-images/location-request.PNG" alt="location-request-prompt">
+
+## Installation
+
+To run this via the repo - Inside your VScode terminal, enter the following:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+    npm i
+    npm run dev
 ```
+... and open the local http link provided.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+------------
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Presentation Slides  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Please follow the following canva link: https://www.canva.com/design/DAGg9DRpKIU/4-uQgSAMVfflawEi4iwZrw/edit
 
-## Learn More
+## The Brief  
 
-To learn more about Next.js, take a look at the following resources:
+At the School of Code, our goal was to create anything we envisioned within the short timeframe of one week. This project encompassed everything we had learned, ensuring that we utilised only the necessary tools and techniques to solve the problem effectively.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentation 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<h3><u>App Outline</u></h3>  
+Our app tackles three barriers that prevent people getting out for a walk:
 
-## Deploy on Vercel
+-  In the UK it can be hard to find a window of nice weather.    
+-  People can’t think of where to go.   
+-  Life and lethargy get in the way. Our app tells people WHEN to walk, WHERE to walk, and WHY to walk.    
+   
+Our WHEN solution uses a weather API to find the best one hour window on each of the next three days. Our WHERE solution pulls local green spaces from google and presents appealing photos which can be clicked on to get directions from where you are now. Our WHY solution offers pithy motivational reminders and busts excuses. The app is a progressive web app so for easy access from your phone that provides geo-relevant information.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<h3><u>Mobile First</u></h3> 
+With an focus for getting our users to venture into regular, refreshing walks into local perhaps unknown vistas or natural points of interest, naturally our app made sense to execute in a mobile first approach:  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  <img align = "center" src="/readme-images/where-to-go-screenshot-mobile.PNG" alt="StS logo and title">
+
+----------------------------------
+
+<h3><u>MVP</u> - Completed: 2025/03/05</h3>
+
+- 'When' section, 3 Weather Windows (Dry Spell) from a fixed location 
+- Functional API fetch calls to OpenWeather 
+- Placeholder 'Where' section to show location intent (3 PH pictures)
+- Basic Style Formatting
+
+<h3><u>MS1</u> - Completed: 2025/03/06</h3>
+
+- 'Where' section populated with 3 actual nearby 'parks' (from google places API)
+- 'Why' section, which functions as a motivational prompt (randomly generated)
+- Improved Styling, with a focus to ensure it's optimal on mobile
+- Improved 'When' weather logic, to generate the best 3 weather windows within the next 48 hours
+- Unit testing for weather logic
+
+<h3><u>MS2</u> - Completed: 2025/03/06</h3>
+
+- Route link on 'Where' card when clicked, takes the user to google maps
+- Geolocation fallback functionality
+
+## Future Milestones
+
+<h3><u>MS3</u></h3>
+
+- PH Text
+- PH Text
+- PH Text
+
+## Authors
+
+Created by Team Lash'n  
+<i><b>aka:</b> @Lizwade, @Al-lamb, @Sumeyacodes, @Hannalysis & @Newmaldenite</i>
