@@ -2,7 +2,9 @@
 
 <p align = "center"><b>Overview</b>: <i>"After the past 13 weeks, as we’ve been sat inside, spring has now sprung and we wanted to make sure that we get outside as much as possible. Our app breaks down the barrier and ultimate excuses of not knowing when and where to go." </i></p>
 
+<p align = "center">
   <img align = "center" src="/readme-images/sofa-to-strider-logo-and-title.PNG" alt="StS logo and title">
+</p>
 
 ------------
 
@@ -12,7 +14,9 @@ For ease of use, please visit our app on: https://sofa-to-strider.vercel.app/
 
 <h4><u>Advisory:</u></h4> In order to get the optimal functionality of this app, please ensure your device's 'Location' option is enabled, then you should see the following prompt upon launch:  
   
+<p align = "center">
   <img align = "center" src="/readme-images/location-permission.png" alt="location-request-prompt">
+</p>
 
 ## Installation
 
@@ -46,9 +50,11 @@ Our app tackles three barriers that prevent people getting out for a walk:
 Our WHEN solution uses a weather API to find the best one hour window on each of the next three days. Our WHERE solution pulls local green spaces from google and presents appealing photos which can be clicked on to get directions from where you are now. Our WHY solution offers pithy motivational reminders and busts excuses. The app is a progressive web app so for easy access from your phone that provides geo-relevant information.  
 
 <h3><u>Mobile First</u></h3> 
-With an focus for getting our users to venture into regular, refreshing walks into local perhaps unknown vistas or natural points of interest, naturally our app made sense to execute in a mobile first approach:  
-    <p align = "center">
-  <img align ="center" src="/readme-images/where-to-go-screenshot-mobile.png" alt="Where-to-go-mobile-view"></p>
+With an focus for getting our users to venture into regular, refreshing walks into local perhaps unknown vistas or natural points of interest, naturally our app made sense to execute in a mobile first approach: 
+
+<p align = "center">
+  <img align ="center" src="/readme-images/where-to-go-screenshot-mobile.png" alt="Where-to-go-mobile-view">
+</p>
 
 ----------------------------------
 
