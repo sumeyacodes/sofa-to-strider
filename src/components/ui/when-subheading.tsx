@@ -6,7 +6,7 @@ export default function WhenSubheading() {
       {/* First Subheading*/}
       <div>
         <h2 className="text-2xl md:text-3xl font-semibold text-[#4A7C59]">
-          <span className="animate-color-transition">WHEN TO GO</span>
+          <span className="animate-color-transition">WHEN TO WALK</span>
 
         </h2>
         <div className="flex items-center justify-start mt-3">

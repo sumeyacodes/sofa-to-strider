@@ -7,8 +7,9 @@ import { useState } from 'react';
 
 
 
-export default function Motivator() {
+export default function Motivator({setDoingChat}) {
     const [message, setMessage] = useState("click me");
+    
 
 const motivations : string[] = [
   "Boost your mood for up to 12 hours! A brisk walk can release endorphins that keep you feeling good.",
@@ -36,6 +37,7 @@ const motivations : string[] = [
     
     function refreshMessage() {
         setMessage(motivations[Math.floor(Math.random() * motivations.length)]);
+        setDoingChat(true) //should pass in DoingChat and check it before setting, to avoid a refresh?
     }
     
 
@@ -47,7 +49,8 @@ const motivations : string[] = [
     onClick={refreshMessage}
     aria-label="Why button">
             {message}
-    </button>
+        </button>
+        
             
     );
 

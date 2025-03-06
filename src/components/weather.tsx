@@ -77,7 +77,7 @@ export default function WeatherApp() {
       case "sunny":
         return `It's lovely and sunny!`;
       case "cloudy":
-        return `A few clouds won't kill you`;
+        return `A few clouds won't hurt you`;
       case "rainy":
         return `Go dance in the rain!`;
       case "snowy":

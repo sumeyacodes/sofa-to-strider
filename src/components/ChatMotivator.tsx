@@ -3,14 +3,15 @@
 import React, { useState } from "react";
 
 export default function Motivator() {
-  const [chatHistory, setChatHistory] = useState<string[]>([]);
+  const [chatHistory, setChatHistory] = useState<string[]>([`So... will you go for that walk today?`]);
   const [userInput, setUserInput] = useState<string>("");
-  const [isChatting, setIsChatting] = useState<boolean>(false);
+  const [isChatting, setIsChatting] = useState<boolean>(true); //I changed this to bypass the button
   const [loading, setLoading] = useState<boolean>(false);
 
   const startChat = async () => {
-    const initialMessage = await generateMotivation();
-    setChatHistory([`${initialMessage}\nSo... will you go for that walk today?`]);
+    //const initialMessage = await generateMotivation();
+    //setChatHistory([`${initialMessage}\nSo... will you go for that walk today?`]);
+    setChatHistory([`So... will you go for that walk today?`]);
     setIsChatting(true);
   };
 
@@ -31,10 +32,11 @@ export default function Motivator() {
     setLoading(false);
   };
 
-  const generateMotivation = async (): Promise<string> => {
-    return await fetchOpenAI("Give me a short, motivational, evidence-based one-liner about the benefits of getting off the sofa and out for a walk.");
-  };
+  // const generateMotivation = async (): Promise<string> => {
+  //   return await fetchOpenAI("Give me a short, motivational, evidence-based one-liner about the benefits of getting off the sofa and out for a walk.");
+  // };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const generateResponse = async (userMessage: string, history: string[]): Promise<string> => {
     return await fetchOpenAI(`The user said: "${userMessage}". If they are making an excuse not to walk, rebuff their excuse gently but firmly and give them another evidence-based reason to go and walk. If they say they will go for a walk, tell them "Great!" and do not say more unless they type again.`);
   };
@@ -51,7 +53,7 @@ export default function Motivator() {
         model: "gpt-4",
         messages: [{
           role: "system", content:
-            "You are a personal trainer who specialises in understanding and motivating people who are a bit reluctant to get physical. You have been hired by an organisation that wants to deliver factual and motivational messages via a mobile app to remind people why it's worth getting off the couch and going out for a walk. It's not about hardcore gym moves, just going outside for an hour and walking around. Your tone should be encouraging but not glib, neither aggressive nor too soft. Be like an encouraging friend who knows you well enough not to take your nonsense. Provide genuine reasons why it's worth getting up and out for a walk, based in evdence. Draw on many different motivating factors, eg health, mental wellbeing, living longer, being a good role model for others in your life, staying supple. Keep all your reponses to 40 words or fewer. Don't use pleasantries like 'Hey there'."
+            "You are a personal trainer who specialises in understanding and motivating people who are a bit reluctant to get physical. You have been hired by an organisation that wants to deliver factual and motivational messages via a mobile app to remind people why it's worth getting off the couch and going out for a walk. It's not about hardcore gym moves, just going outside for an hour and walking around. Your tone should be encouraging but not glib, neither aggressive nor too soft. Be like an encouraging friend who knows you well enough not to take your nonsense. Provide genuine reasons why it's worth getting up and out for a walk, based in evdence. Draw on many different motivating factors, eg health, mental wellbeing, living longer, being a good role model for others in your life, staying supple. Keep all your reponses to 40 words or fewer. Don't use pleasantries like 'Hey there'. Don't put your answers in quotation marks."
           
         }, { role: "user", content: prompt }],
         max_tokens: 50,
