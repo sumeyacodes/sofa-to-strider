@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { Place } from '../lib/types';
+// import type { Place } from '../lib/types';
 import Image from 'next/image'
 import { PlacePhotoDisplayProps } from "../lib/types";
 

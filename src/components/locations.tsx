@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { LoadScript } from "@react-google-maps/api";
 import PlacePhotoDisplay from "./PlacePhotoDisplay";
 import { useLocationContext } from "@/context/location-provider";
-import WhereSubheading from "@/components/ui/where-subheading";
+// import WhereSubheading from "@/components/ui/where-subheading";
 import {
   Carousel,
   CarouselContent,
@@ -17,10 +17,6 @@ import {
 import { Card, CardContent } from "@/components/ui/card"
 import { Star } from "lucide-react";
 
-type PlaceProps = {
-  place: Place;
-  className?: string; // Ensure className is explicitly defined
-};
 
 export function Locations() { 
   const [places, setPlaces] = useState<Place[]>([]);
