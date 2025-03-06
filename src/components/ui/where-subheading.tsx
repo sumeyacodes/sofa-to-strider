@@ -3,7 +3,7 @@ import * as React from "react";
 export default function WhereSubheading() {
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Third Subheading */}
+      {/* Second Subheading */}
       <div>
         <h2 className="text-2xl md:text-3xl font-semibold text-[#4A7C59]">
           WHERE TO GO
