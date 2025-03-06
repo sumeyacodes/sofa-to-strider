@@ -71,6 +71,24 @@ export default function WeatherApp() {
     }
   };
 
+   const PerkyMessage = ({ condition }: { condition: string }) => {
+  
+    switch (condition) {
+      case "sunny":
+        return `It's lovely and sunny!`;
+      case "cloudy":
+        return `A few clouds won't kill you`;
+      case "rainy":
+        return `Go dance in the rain!`;
+      case "snowy":
+        return `Go throw some snowballs `;
+      default:
+        return `Perfect for walking!`;
+    }
+  };
+
+  
+
   if (loading)
     return <div className="text-center p-8">Loading weather data...</div>;
   if (error) return <div className="text-center text-red-500 p-8">{error}</div>;
@@ -87,20 +105,23 @@ export default function WeatherApp() {
                   {" "}
                   {/* Added flex properties */}
                   <WeatherIcon condition={window.condition} />
-                  <h3 className="text-xl font-semibold mb-2">
-                    {format(window.startTime, "MMM d")}
+                  <h3 className="text-xl font-semibold mb-2">Go at&nbsp; 
+                  {format(window.startTime, "h:mm a")} on{" "}
+                    {/* {format(window.endTime, "h:mm a")} */}
+                    {format(window.startTime, "d MMM")}
+                    
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {format(window.startTime, "h:mm a")} -{" "}
-                    {format(window.endTime, "h:mm a")}
+                  <p className="text-sm text-bold-foreground mb-4">
+                     <PerkyMessage condition={window.condition} />
+                    
                   </p>
                   <div className="flex items-center justify-center gap-2">
                     <Sun size={16} />
-                    <span className="text-sm font-medium">
+                    {/* <span className="text-sm font-medium">
                       {window.isDry
                         ? "Perfect for Walking!"
                         : "Not ideal but best of the rest!"}
-                    </span>
+                    </span> */}
                   </div>
                 </CardContent>
               </Card>
