@@ -32,7 +32,7 @@ To run this via the repo - Inside your VScode terminal, enter the following:
 
 ## Presentation Slides  
 
-Please follow the following canva link: https://www.canva.com/design/DAGg9DRpKIU/4-uQgSAMVfflawEi4iwZrw/edit
+Please click on the following canva link: https://www.canva.com/design/DAGg9DRpKIU/4-uQgSAMVfflawEi4iwZrw/edit
 
 ## The Brief  
 
