@@ -4,6 +4,7 @@ import { Locations } from "@/components/locations";
 import WhenSubheading from "@/components/ui/when-subheading";
 import WhySubheading from "@/components/ui/why-subheading";
 import Footer from "@/components/footer";
+import WhereSubheading from "@/components/ui/where-subheading";
 
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
       <WhenSubheading />
 
       <WeatherApp />
+      <WhereSubheading />
       <Locations />
       <WhySubheading />
       <Footer />
