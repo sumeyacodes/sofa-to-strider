@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "An app to help you get started going outside",
     start_url: "/",
     display: "standalone",
-    background_color: "#808080",
-    theme_color: "#808080",
+    background_color: "#faf3dd",
+    theme_color: "#faf3dd",
     icons: [
       {
         src: "/favicon.ico",
