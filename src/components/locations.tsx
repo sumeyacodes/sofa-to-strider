@@ -39,7 +39,6 @@ export function Locations() {
         <Carousel className="w-full max-w-md mx-auto p-4">
           <CarouselContent>
             {places.map((place, index) => {
-              
               const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
                 place.name
               )}&destination_place_id=${place.place_id}`;

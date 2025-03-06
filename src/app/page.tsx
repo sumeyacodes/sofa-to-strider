@@ -5,7 +5,7 @@ import WhenSubheading from "@/components/ui/when-subheading";
 import WhySubheading from "@/components/ui/why-subheading";
 import Footer from "@/components/footer";
 import WhereSubheading from "@/components/ui/where-subheading";
-
+import Motivator from "@/components/Motivator";
 
 export default function Home() {
   return (
@@ -26,6 +26,7 @@ export default function Home() {
       <WhereSubheading />
       <Locations />
       <WhySubheading />
+      <Motivator />
       <Footer />
     </main>
   );
