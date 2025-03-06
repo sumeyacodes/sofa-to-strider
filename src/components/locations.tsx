@@ -1,28 +1,24 @@
 "use client";
-import type { Place } from '../lib/types';
+
+import type { Place } from "../lib/types";
 
 import { useState, useEffect } from "react";
 import { LoadScript } from "@react-google-maps/api";
-//import { GoogleMap, Marker } from "@react-google-maps/api";
 import PlacePhotoDisplay from "./PlacePhotoDisplay";
-//import { MapPin } from "lucide-react";
+import { useLocationContext } from "@/context/location-provider";
 import WhereSubheading from "@/components/ui/where-subheading";
-
 
 
 export function Locations() {
   const [places, setPlaces] = useState<Place[]>([]);
-  const [location, setLocation] = useState({ lat: 51.5902, lng: 0.0173 }); // Default to Walthamstow
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const updateLocation = () => {
-    // Example usage of setLocation
-    setLocation({ lat: 40.7128, lng: -74.0060 }); // New York City coordinates
-  };
+  const { location } = useLocationContext();
 
   useEffect(() => {
     const fetchPlaces = async () => {
-      const res = await fetch(`/api/places?lat=${location.lat}&lng=${location.lng}`);
+      const res = await fetch(
+        `/api/places?lat=${location.latitude}&lng=${location.longitude}`
+      );
+
       const data: Place[] = await res.json();
       setPlaces(data);
     };
@@ -30,21 +26,20 @@ export function Locations() {
     fetchPlaces();
   }, [location]);
 
-  const googleMapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "YOUR_DEFAULT_API_KEY";
-
-  // function displayPlace(aPlace: Place) {
-  //   const myName = aPlace.name;
-  // </section>  console.log('ref for photo is ' + aPlace.photos[0].photo_reference);
-  //   alert(myName);
-  // }
+  const googleMapsApiKey =
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "YOUR_DEFAULT_API_KEY";
 
   return (
     <section className="flex flex-col items-center justify-center w-full">
       <LoadScript googleMapsApiKey={googleMapsApiKey}>
-      <WhereSubheading />
+        <WhereSubheading />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 max-w-4xl">
           {[0, 1, 2].map((index) => (
-            <div key={index} className="relative overflow-hidden rounded-lg border-4 border-[#4A7C59] shadow-lg">
+            <div
+              key={index}
+              className="relative overflow-hidden rounded-lg border-4 border-[#4A7C59] shadow-lg"
+            >
+
               <div className="top-0 left-0 right-0 h-40 bg-[#4A7C59] flex items-center px-4">
                 <div className="flex space-x-2">
                   <div className="w-3 h-3 rounded-full bg-[#FAF3DD]"></div>

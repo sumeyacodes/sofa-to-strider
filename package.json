@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
@@ -25,7 +26,8 @@
     "react-dom": "^18.0.0",
     "shadcn": "^2.4.0-canary.11",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vitest": "^3.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

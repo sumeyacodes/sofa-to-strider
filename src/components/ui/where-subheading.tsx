@@ -1,8 +1,8 @@
 import * as React from "react";
 
 export default function WhereSubheading() {
-    return (
-      <div className="max-w-4xl mx-auto">
+  return (
+    <div className="max-w-4xl mx-auto">
       {/* Third Subheading */}
       <div>
         <h2 className="text-2xl md:text-3xl font-semibold text-[#4A7C59]">
@@ -14,17 +14,6 @@ export default function WhereSubheading() {
           <div className="h-[3px] w-12 bg-[#68B0AB]"></div>
         </div>
       </div>
-
-        </div>
-    )
-  }
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
+    </div>
+  );
+}
