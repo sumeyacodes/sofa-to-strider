@@ -59,6 +59,14 @@ With an focus for getting our users to venture into regular, refreshing walks in
 
 ----------------------------------
 
+<h3><u>Tech Stack including:</u></h3>  
+
+<p align="left">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,html,tailwind,vscode,vitest,figma&perline=8" />
+  </a>
+</p>
+
 <h3><u>MVP</u> - Completed: 2025/03/05</h3>
 
 - 'When' section, 3 Weather Windows (Dry Spell) from a fixed location 
