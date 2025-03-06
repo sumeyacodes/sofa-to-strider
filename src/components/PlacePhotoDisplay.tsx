@@ -12,8 +12,8 @@ function PlacePhotoDisplay({ place, className }: PlacePhotoDisplayProps) {
         const photo = place.photos[0];
 
         const stringToFetch = `/api/photo?photoReference=${photo.photo_reference}`;
-        console.log("In the PlacePhotoDisplay component. stringToFetch is ");
-        console.log(stringToFetch);
+        // console.log("In the PlacePhotoDisplay component. stringToFetch is ");
+        // console.log(stringToFetch);
 
         try {
           const response = await fetch(stringToFetch);
