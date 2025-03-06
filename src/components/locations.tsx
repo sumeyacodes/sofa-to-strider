@@ -8,6 +8,7 @@ import PlacePhotoDisplay from "./PlacePhotoDisplay";
 import { useLocationContext } from "@/context/location-provider";
 import WhereSubheading from "@/components/ui/where-subheading";
 
+
 export function Locations() {
   const [places, setPlaces] = useState<Place[]>([]);
   const { location } = useLocationContext();
@@ -38,6 +39,7 @@ export function Locations() {
               key={index}
               className="relative overflow-hidden rounded-lg border-4 border-[#4A7C59] shadow-lg"
             >
+
               <div className="top-0 left-0 right-0 h-40 bg-[#4A7C59] flex items-center px-4">
                 <div className="flex space-x-2">
                   <div className="w-3 h-3 rounded-full bg-[#FAF3DD]"></div>
