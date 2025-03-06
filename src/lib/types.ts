@@ -41,6 +41,10 @@ export type Place = {
   geometry: {
     location: LocationType;
   };
+  vicinity?: string;
+  formatted_address?: string;
+  rating?: number;
+  user_ratings_total?: number;
   // Add other properties of a place if needed
 };
 
@@ -51,4 +55,9 @@ export interface LocationType {
 
 export interface LocationContextType {
   location: LocationType;
+}
+
+export interface PlacePhotoDisplayProps {
+  place: Place
+  className?: string  // Add this line
 }

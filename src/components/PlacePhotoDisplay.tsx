@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import type { Place } from '../lib/types';
 import Image from 'next/image'
+import { PlacePhotoDisplayProps } from "../lib/types";
 
 
 
-function PlacePhotoDisplay({ place }: { place: Place }) {
+function PlacePhotoDisplay({ place, className }: PlacePhotoDisplayProps) {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function PlacePhotoDisplay({ place }: { place: Place }) {
   }, [place]);
 
   return (
-    <div>
+    <div className={className}>
       {place ? (
         <h3>{place.name}</h3>
       ) : (<h3>Loading...</h3>
