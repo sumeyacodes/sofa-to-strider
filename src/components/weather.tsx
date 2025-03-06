@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
-import { format, addHours, addDays } from "date-fns";
+import { format } from "date-fns";
 import {
   Carousel,
   CarouselContent,
@@ -13,6 +14,8 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Sun, Cloud, CloudRain, CloudSnow } from "lucide-react";
 import type { WeatherWindow } from "@/lib/types";
+import { useLocationContext } from "@/context/location-provider";
+import { processDryWindows } from "@/utils/get-weather";
 
 export default function WeatherApp() {
   const [dryWindows, setDryWindows] = useState<WeatherWindow[]>([]);
@@ -21,23 +24,19 @@ export default function WeatherApp() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+  const { location } = useLocationContext();
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const position = await new Promise<GeolocationPosition>(
-          (resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject);
-          }
-        );
-
         const response = await fetch(
-          `/api/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}`
+          `/api/weather?lat=${location.latitude}&lon=${location.longitude}`
         );
 
         if (!response.ok) throw new Error("Weather API failed");
 
         const data = await response.json();
+        if (!response.ok) throw new Error("Weather API failed");
 
         if (!data?.current || !data?.hourly) {
           throw new Error("Invalid weather data format");
@@ -55,83 +54,6 @@ export default function WeatherApp() {
 
     fetchWeather();
   }, []);
-
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
-
-  const processDryWindows = (hourly: WeatherWindow[]): WeatherWindow[] => {
-    const dailyDryWindows = new Map<string, WeatherWindow>();
-    const dailyFallbackWindows = new Map<string, WeatherWindow>();
-    const endDate = addDays(new Date(), 5);
-
-    for (const hour of hourly) {
-      const date = new Date(hour.date);
-      if (date > endDate) break;
-
-      const hours = date.getHours();
-      const dayKey = format(date, "yyyy-MM-dd");
-
-      if (hours >= 8 && hours < 18) {
-        if (hour.isDry) {
-          const currentDryBest = dailyDryWindows.get(dayKey);
-          if (
-            !currentDryBest ||
-            hour.temperature > currentDryBest.temperature
-          ) {
-            dailyDryWindows.set(dayKey, {
-              ...hour,
-              date: date,
-              startTime: date,
-              endTime: addHours(date, 1),
-            });
-          }
-        }
-
-        const currentFallbackBest = dailyFallbackWindows.get(dayKey);
-        if (
-          !currentFallbackBest ||
-          hour.temperature > currentFallbackBest.temperature
-        ) {
-          dailyFallbackWindows.set(dayKey, {
-            ...hour,
-            date: date,
-            startTime: date,
-            endTime: addHours(date, 1),
-            isDry: false,
-          });
-        }
-      }
-    }
-
-    const results: WeatherWindow[] = [];
-    const today = new Date();
-
-    for (let i = 0; i < 5; i++) {
-      const currentDay = addDays(today, i);
-      const dayKey = format(currentDay, "yyyy-MM-dd");
-
-      const bestWindow =
-        dailyDryWindows.get(dayKey) || dailyFallbackWindows.get(dayKey);
-
-      if (bestWindow) {
-        results.push(bestWindow);
-      }
-    }
-
-    return results
-      .sort((a, b) => a.date.getTime() - b.date.getTime())
-      .slice(0, 5);
-  };
 
   const WeatherIcon = ({ condition }: { condition: string }) => {
     const iconProps = { size: 48, className: "mb-4" };
