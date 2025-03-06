@@ -6,19 +6,19 @@ import WhySubheading from "@/components/ui/why-subheading";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center h-screen gap-10 p-5">
+    <main className="flex flex-col items-center justify-cente gap-10 p-5">
       <Image
-        src="/walking-icon.png"
+        src="/sTsIcon.png"
         alt="Logo"
-        width={180}
+        width={100}
         height={38}
         priority
+        className="rounded-lg"
       />
       <h1 className="text-5xl font-bold text-center">Sofa to Strider</h1>
-      {/* shadcn example component */}
-      {/* <Example /> */}
+
       <WhenSubheading />
-      {/* can rename/restructure these components */}
+
       <WeatherApp />
       <Locations />
       <WhySubheading />

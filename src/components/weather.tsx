@@ -1,4 +1,4 @@
-"use client";
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -9,20 +9,21 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  type CarouselApi,
 } from "@/components/ui/carousel";
-import { Card } from "@/components/ui/card";
-import { Sun, Cloud, CloudRain, CloudSnow } from "lucide-react"; // deleted Umbrella
-import type { WeatherWindow } from "@/lib/types"; // deleted WeatherData, ProcessedHour
+import { Card, CardContent } from "@/components/ui/card";
+import { Sun, Cloud, CloudRain, CloudSnow } from "lucide-react";
+import type { WeatherWindow } from "@/lib/types";
 import { useLocationContext } from "@/context/location-provider";
 import { processDryWindows } from "@/utils/get-weather";
 
 export default function WeatherApp() {
-  // const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
   const [dryWindows, setDryWindows] = useState<WeatherWindow[]>([]);
-
-  // const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
   const { location } = useLocationContext();
 
   useEffect(() => {
@@ -35,14 +36,12 @@ export default function WeatherApp() {
         if (!response.ok) throw new Error("Weather API failed");
 
         const data = await response.json();
-
         if (!response.ok) throw new Error("Weather API failed");
 
         if (!data?.current || !data?.hourly) {
           throw new Error("Invalid weather data format");
         }
 
-        // setWeatherData(data.current)
         setDryWindows(processDryWindows(data.hourly));
       } catch (err) {
         setError(
@@ -58,7 +57,6 @@ export default function WeatherApp() {
 
   const WeatherIcon = ({ condition }: { condition: string }) => {
     const iconProps = { size: 48, className: "mb-4" };
-
     switch (condition) {
       case "sunny":
         return <Sun {...iconProps} />;
@@ -78,27 +76,33 @@ export default function WeatherApp() {
   if (error) return <div className="text-center text-red-500 p-8">{error}</div>;
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <Carousel opts={{ align: "start", slidesToScroll: 1 }} className="w-full">
+    <div className="max-w-sm p-4">
+      {" "}
+      <Carousel setApi={setApi} className="w-full">
         <CarouselContent>
           {dryWindows.map((window, index) => (
-            <CarouselItem key={index} className="basis-1/3">
-              <Card className="p-6 text-center">
-                <WeatherIcon condition={window.condition} />
-                <h3 className="text-xl font-semibold mb-2">
-                  {format(window.startTime, "MMM d")}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {format(window.endTime, "h:mm a")}
-                </p>
-                <div className="flex items-center justify-center gap-2">
-                  <Sun size={16} />
-                  <span className="text-sm font-medium">
-                    {window.isDry
-                      ? "Perfect for Walking!"
-                      : "Not ideal but best of the rest!"}
-                  </span>
-                </div>
+            <CarouselItem key={index}>
+              <Card>
+                <CardContent className="flex flex-col items-center justify-center p-4 text-center">
+                  {" "}
+                  {/* Added flex properties */}
+                  <WeatherIcon condition={window.condition} />
+                  <h3 className="text-xl font-semibold mb-2">
+                    {format(window.startTime, "MMM d")}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {format(window.startTime, "h:mm a")} -{" "}
+                    {format(window.endTime, "h:mm a")}
+                  </p>
+                  <div className="flex items-center justify-center gap-2">
+                    <Sun size={16} />
+                    <span className="text-sm font-medium">
+                      {window.isDry
+                        ? "Perfect for Walking!"
+                        : "Not ideal but best of the rest!"}
+                    </span>
+                  </div>
+                </CardContent>
               </Card>
             </CarouselItem>
           ))}
