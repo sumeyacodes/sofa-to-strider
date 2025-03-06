@@ -9,7 +9,7 @@ import WhereSubheading from "@/components/ui/where-subheading";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-cente gap-10 p-5">
+    <main className="flex flex-col items-center justify-center gap-10 p-5 overflow-x-hidden">
       <Image
         src="/sTsIcon.png"
         alt="Logo"
