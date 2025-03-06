@@ -9,7 +9,7 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-  type CarouselApi,
+  // type CarouselApi,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sun, Cloud, CloudRain, CloudSnow } from "lucide-react";
@@ -21,9 +21,9 @@ export default function WeatherApp() {
   const [dryWindows, setDryWindows] = useState<WeatherWindow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  // const [api, setApi] = useState<CarouselApi>();
+  // const [current, setCurrent] = useState(0);
+  // const [count, setCount] = useState(0);
   const { location } = useLocationContext();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function WeatherApp() {
     };
 
     fetchWeather();
-  }, []);
+  }, [location.latitude, location.longitude]);
 
   const WeatherIcon = ({ condition }: { condition: string }) => {
     const iconProps = { size: 48, className: "mb-4" };
@@ -78,7 +78,7 @@ export default function WeatherApp() {
   return (
     <div className="max-w-sm p-4">
       {" "}
-      <Carousel setApi={setApi} className="w-full">
+      <Carousel /*setApi={setApi}*/ className="w-full">
         <CarouselContent>
           {dryWindows.map((window, index) => (
             <CarouselItem key={index}>
