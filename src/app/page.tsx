@@ -5,11 +5,11 @@ import WhenSubheading from "@/components/ui/when-subheading";
 import WhySubheading from "@/components/ui/why-subheading";
 import Footer from "@/components/footer";
 import WhereSubheading from "@/components/ui/where-subheading";
-
+import Motivator from "@/components/Motivator";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-cente gap-10 p-5">
+    <main className="flex flex-col items-center justify-center gap-10 p-5 overflow-x-hidden">
       <Image
         src="/sTsIcon.png"
         alt="Logo"
@@ -26,6 +26,7 @@ export default function Home() {
       <WhereSubheading />
       <Locations />
       <WhySubheading />
+      <Motivator />
       <Footer />
     </main>
   );
