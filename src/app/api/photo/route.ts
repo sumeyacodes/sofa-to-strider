@@ -1,8 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  console.log("Hello from the GET route");
-  console.log(req);
+  // console.log("Hello from the GET route");
+  // console.log(req);
   try {
     const { searchParams } = new URL(req.url);
     const photoReference = searchParams.get("photoReference");
@@ -15,8 +15,8 @@ export async function GET(req: NextRequest) {
 
     const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${apiKey}`;
 
-    console.log(`trying to get photo for photoUrl`);
-    console.log(photoUrl);
+    // console.log(`trying to get photo for photoUrl`);
+    // console.log(photoUrl);
 
     const response = await fetch(photoUrl);
 
