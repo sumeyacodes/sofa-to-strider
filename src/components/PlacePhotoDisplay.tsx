@@ -43,9 +43,8 @@ function PlacePhotoDisplay({ place }: { place: Place }) {
         <h3>{place.name}</h3>
       ) : (<h3>Loading...</h3>
       )}
-      
       {photoUrl ? (
-        <Image src={photoUrl} width={200} height={200} alt="Place Photo" /> //feel free to change dimensions - this was just ot make it somewhat fit
+        <Image src={photoUrl} alt="Place Photo" layout="fill" objectFit="cover" /> //unable to fully manipulate dimensions here, using the containers to constrain size instead in locations
       ) : (
         <p>No photo available.</p>
       )}

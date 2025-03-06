@@ -1,6 +1,8 @@
 import Image from "next/image";
 import WeatherApp from "@/components/weather";
 import { Locations } from "@/components/locations";
+import WhenSubheading from "@/components/ui/when-subheading";
+import WhySubheading from "@/components/ui/why-subheading";
 
 export default function Home() {
   return (
@@ -13,13 +15,13 @@ export default function Home() {
         priority
       />
       <h1 className="text-5xl font-bold text-center">Sofa to Strider</h1>
-
       {/* shadcn example component */}
-    
-
+      {/* <Example /> */}
+      <WhenSubheading />
       {/* can rename/restructure these components */}
       <WeatherApp />
       <Locations />
+      <WhySubheading />
     </main>
   );
 }
