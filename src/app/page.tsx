@@ -3,6 +3,8 @@ import WeatherApp from "@/components/weather";
 import { Locations } from "@/components/locations";
 import WhenSubheading from "@/components/ui/when-subheading";
 import WhySubheading from "@/components/ui/why-subheading";
+import Footer from "@/components/footer";
+
 
 export default function Home() {
   return (
@@ -22,6 +24,7 @@ export default function Home() {
       <WeatherApp />
       <Locations />
       <WhySubheading />
+      <Footer />
     </main>
   );
 }
