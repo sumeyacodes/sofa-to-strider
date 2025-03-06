@@ -10,9 +10,9 @@
 
 For ease of use, please visit our app on: https://sofa-to-strider.vercel.app/
 
-<h4><u>Advisory:</u></h4> In order to get the optimal functionality of this app, please ensure your device's 'Location' option is enabled, then you should see the following prompt upon launch:
-
-  <img align = "center" src="/readme-images/location-request.PNG" alt="location-request-prompt">
+<h4><u>Advisory:</u></h4> In order to get the optimal functionality of this app, please ensure your device's 'Location' option is enabled, then you should see the following prompt upon launch:  
+  
+  <img align = "center" src="/readme-images/location-permission.png" alt="location-request-prompt">
 
 ## Installation
 
@@ -48,7 +48,7 @@ Our WHEN solution uses a weather API to find the best one hour window on each of
 <h3><u>Mobile First</u></h3> 
 With an focus for getting our users to venture into regular, refreshing walks into local perhaps unknown vistas or natural points of interest, naturally our app made sense to execute in a mobile first approach:  
 
-  <img align = "center" src="/readme-images/where-to-go-screenshot-mobile.PNG" alt="StS logo and title">
+  <img align ="center" src="/readme-images/where-to-go-screenshot-mobile.png" alt="Where-to-go-mobile-view">
 
 ----------------------------------
 
