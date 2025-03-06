@@ -1,14 +1,12 @@
 "use client";
+
 import type { Place } from "../lib/types";
 
 import { useState, useEffect } from "react";
 import { LoadScript } from "@react-google-maps/api";
-//import { GoogleMap, Marker } from "@react-google-maps/api";
 import PlacePhotoDisplay from "./PlacePhotoDisplay";
-//import { MapPin } from "lucide-react";
-import WhereSubheading from "@/components/ui/where-subheading";
-
 import { useLocationContext } from "@/context/location-provider";
+import WhereSubheading from "@/components/ui/where-subheading";
 
 export function Locations() {
   const [places, setPlaces] = useState<Place[]>([]);
@@ -19,6 +17,7 @@ export function Locations() {
       const res = await fetch(
         `/api/places?lat=${location.latitude}&lng=${location.longitude}`
       );
+
       const data: Place[] = await res.json();
       setPlaces(data);
     };
@@ -28,12 +27,6 @@ export function Locations() {
 
   const googleMapsApiKey =
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "YOUR_DEFAULT_API_KEY";
-
-  // function displayPlace(aPlace: Place) {
-  //   const myName = aPlace.name;
-  // </section>  console.log('ref for photo is ' + aPlace.photos[0].photo_reference);
-  //   alert(myName);
-  // }
 
   return (
     <section className="flex flex-col items-center justify-center w-full">

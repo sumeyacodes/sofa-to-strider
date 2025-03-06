@@ -1,4 +1,5 @@
 "use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
@@ -18,6 +19,7 @@ import { processDryWindows } from "@/utils/get-weather";
 export default function WeatherApp() {
   // const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
   const [dryWindows, setDryWindows] = useState<WeatherWindow[]>([]);
+
   // const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -33,6 +35,8 @@ export default function WeatherApp() {
         if (!response.ok) throw new Error("Weather API failed");
 
         const data = await response.json();
+
+        if (!response.ok) throw new Error("Weather API failed");
 
         if (!data?.current || !data?.hourly) {
           throw new Error("Invalid weather data format");
@@ -54,6 +58,7 @@ export default function WeatherApp() {
 
   const WeatherIcon = ({ condition }: { condition: string }) => {
     const iconProps = { size: 48, className: "mb-4" };
+
     switch (condition) {
       case "sunny":
         return <Sun {...iconProps} />;
@@ -84,7 +89,6 @@ export default function WeatherApp() {
                   {format(window.startTime, "MMM d")}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  {format(window.startTime, "h:mm a")} -{" "}
                   {format(window.endTime, "h:mm a")}
                 </p>
                 <div className="flex items-center justify-center gap-2">
@@ -105,13 +109,3 @@ export default function WeatherApp() {
     </div>
   );
 }
-
-// Moved outside the component
-// function mapWeatherCondition(weatherId: number): string {
-//   if (weatherId >= 200 && weatherId < 300) return 'stormy'
-//   if (weatherId >= 300 && weatherId < 600) return 'rainy'
-//   if (weatherId >= 600 && weatherId < 700) return 'snowy'
-//   if (weatherId === 800) return 'sunny'
-//   if (weatherId > 800) return 'cloudy'
-//   return 'partly-cloudy'
-// }
