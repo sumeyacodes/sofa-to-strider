@@ -88,7 +88,7 @@ test("should prefer dry window over wet window even with lower temperature", () 
   const actualData = processDryWindows(mixedWeatherData);
 
   // ASSERT: Check if it chose the dry window
-  expect(actualData[0].isDry).toBe(true);
+  expect(actualData[0].isDry).toBe(expected.isDry);
   expect(actualData[0].temperature).toBe(25.0);
   expect(actualData[0].condition).toBe("sunny");
 });
@@ -100,7 +100,7 @@ test("should use wet window with highest temperature when no dry windows availab
   const actualData = processDryWindows(allWetData);
 
   // ASSERT: Check if it chose the highest temperature wet window
-  expect(actualData[0].isDry).toBe(false);
+  expect(actualData[0].isDry).toBe(expected.isDry);
   expect(actualData[0].temperature).toBe(expected.temperature);
   expect(actualData[0].condition).toBe("rainy");
 });
