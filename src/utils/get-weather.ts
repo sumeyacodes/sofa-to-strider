@@ -14,7 +14,7 @@ export const processDryWindows = (hourly: WeatherWindow[]): WeatherWindow[] => {
 
     const hours = date.getHours();
     const dayKey = format(date, "yyyy-MM-dd");
-
+    console.log("hourly", hourly);
     // Only consider 8am-6pm windows for both dry and fallback
     if (hours >= 8 && hours < 18) {
       // Track best dry window
@@ -32,6 +32,8 @@ export const processDryWindows = (hourly: WeatherWindow[]): WeatherWindow[] => {
 
       // Track best fallback window (regardless of dry status)
       const currentFallbackBest = dailyFallbackWindows.get(dayKey);
+      console.log("hourly", hourly);
+
       if (
         !currentFallbackBest ||
         hour.temperature > currentFallbackBest.temperature
@@ -63,6 +65,7 @@ export const processDryWindows = (hourly: WeatherWindow[]): WeatherWindow[] => {
     }
   }
 
+  console.log("results", results);
   return results
     .sort((a, b) => a.date.getTime() - b.date.getTime())
     .slice(0, 5);

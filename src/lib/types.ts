@@ -14,13 +14,6 @@ export interface WeatherWindow {
   temperature: number; // Add temperature field
 }
 
-export interface WeatherData {
-  condition: string;
-  temperature: number;
-  date: Date;
-  location: string;
-}
-
 export interface OpenWeatherResponse {
   current: WeatherData;
   hourly: WeatherWindow[];
