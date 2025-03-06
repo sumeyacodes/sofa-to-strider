@@ -23,7 +23,6 @@ export function Locations() {
       const res = await fetch(
         `/api/places?lat=${location.latitude}&lng=${location.longitude}`
       );
-
       const data: Place[] = await res.json();
       setPlaces(data);
     };

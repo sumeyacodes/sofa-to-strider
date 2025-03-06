@@ -15,6 +15,7 @@ function PlacePhotoDisplay({ place, className }: PlacePhotoDisplayProps) {
         console.log("In the PlacePhotoDisplay component. stringToFetch is ");
         console.log(stringToFetch);
 
+
         try {
           const response = await fetch(stringToFetch);
 
