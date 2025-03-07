@@ -2,8 +2,9 @@
 
 import React from "react";
 import { useState } from "react";
+import { MotivatorProps } from "@/lib/types";
 
-export default function Motivator({setDoingChat}) {
+export default function Motivator({setDoingChat}: MotivatorProps) {
     const [message, setMessage] = useState("click me");
     
 
