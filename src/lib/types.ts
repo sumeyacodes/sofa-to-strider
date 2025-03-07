@@ -61,3 +61,7 @@ export interface PlacePhotoDisplayProps {
   place: Place
   className?: string  // Add this line
 }
+
+export interface MotivatorProps {
+  setDoingChat?: (value: boolean) => void; 
+}
