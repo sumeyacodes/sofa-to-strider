@@ -1,11 +1,7 @@
+"use client";
 
-"use client"
-
-import React from 'react';
-import { useState } from 'react';
-
-
-
+import React from "react";
+import { useState } from "react";
 
 export default function Motivator({setDoingChat}) {
     const [message, setMessage] = useState("click me");
@@ -54,6 +50,5 @@ const motivations : string[] = [
             
     );
 
+
 }
-
-
